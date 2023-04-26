@@ -76,7 +76,15 @@ SELECT * FROM learner
 
 34. Merge de la branche sur dev
 35. Création d'une branche delete-learner pour supprimer un apprenant
-36. Suppression d'un apprenant via son id
+36. Gestion de la suppression d'un apprenant via son id
+
 ```
 DELETE FROM learner WHERE id = ?
+```
+
+37. Création d'une branche modify-absence
+38. Gestion de la mise à jour des absences pour un apprenant
+
+```
+UPDATE learner SET absence_quantity = ? WHERE id = ?
 ```

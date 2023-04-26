@@ -28,7 +28,7 @@ public class Main {
 		boolean loop = true;
 
 		while (loop) {
-			String action = "supprimer";
+			String action = "modify";
 
 			switch (action) {
 			case "ajouter":
@@ -41,6 +41,10 @@ public class Main {
 				break;
 			case "supprimer":
 				deleteLearner();
+				loop = false; // quitter la boucle après affichage
+				break;
+			case "modify":
+				modifyAbsenceLearner();
 				loop = false; // quitter la boucle après affichage
 				break;
 			}
@@ -181,6 +185,67 @@ public class Main {
 				} else {
 					System.out.println("L'apprenant d'id " + id + " n'existe pas.");
 				}
+			}
+		}
+	}
+	
+	private static void modifyAbsenceLearner() throws ClassNotFoundException, SQLException {
+		System.out.println("MODIFIER LES ABSENCES");
+		
+		System.out.println("Saisissez l'id de l'apprenant à modifier : ");
+		int id = scanner.nextInt();
+		
+		Learner learner = getFromDatabase(id);
+		System.out.println(learner);
+		
+		System.out.println("Saisissez le nombre d'absences à attribuer : ");
+		int absenceQuantity = scanner.nextInt();
+		
+		modifyAbsence(id, absenceQuantity);
+		
+		learner = getFromDatabase(id);
+		System.out.println(learner);
+	}
+	
+	private static Learner getFromDatabase(int id) throws ClassNotFoundException, SQLException {
+		// récupération des informations de l'apprenant dans la base de données
+		Class.forName(POSTGRESQL_DRIVER_NAME);
+
+		try (Connection connection = DriverManager.getConnection(POSTGRESQL_DB_CONNECTION, POSTGRESQL_DB_LOGIN,
+				POSTGRESQL_DB_PASSWORD)) {
+			try (Statement statement = connection.createStatement()) {
+				try (ResultSet resultSet = statement.executeQuery("SELECT * FROM learner WHERE id = " + id)) {
+					resultSet.next();
+					String group = resultSet.getString("group_name");
+					String firstName = resultSet.getString("first_name");
+					String lastName = resultSet.getString("last_name");
+					String emailAddress = resultSet.getString("email_address");
+					String phoneNumber = resultSet.getString("phone_number");
+					int absenceQuantity = resultSet.getInt("absence_quantity");
+					boolean isDelegate = resultSet.getBoolean("is_delegate");
+
+					// création d'un apprenant à partir des informations récupérées en base de
+					// données
+					Learner learner = new Learner(id, group, firstName, lastName, emailAddress, phoneNumber,
+							absenceQuantity, isDelegate);
+
+					return learner;
+				}
+			}
+		}
+	}
+	
+	public static void modifyAbsence(int id, int absenceQuantity) throws ClassNotFoundException, SQLException {
+		// mise à jour de la valeur absence_quantity pour l'apprenant d'id id
+		Class.forName(POSTGRESQL_DRIVER_NAME);
+
+		try (Connection connection = DriverManager.getConnection(POSTGRESQL_DB_CONNECTION, POSTGRESQL_DB_LOGIN,
+				POSTGRESQL_DB_PASSWORD)) {
+			try (PreparedStatement preparedStatement = connection
+					.prepareStatement("UPDATE learner SET absence_quantity = ? WHERE id = ?")) {
+				preparedStatement.setInt(1, absenceQuantity);
+				preparedStatement.setInt(2, id);
+				preparedStatement.executeUpdate();
 			}
 		}
 	}
