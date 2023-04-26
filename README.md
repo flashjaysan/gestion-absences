@@ -59,3 +59,11 @@ CREATE TABLE learner(
 26. Création de la méthode addLearner dans la classe Main
 27. Création d'une boucle d'exécution dans le programme principal
 28. Ajout d'un attribut id à la classe Learner
+29. Découpage de l'ajout d'apprenant en plusieurs méthodes
+30. Ajout d'apprenant et récupération de l'id généré en base de données pour mettre à jour l'instance de l'apprenant
+
+```
+INSERT INTO learner(group_name, first_name, last_name, email_address, phone_number, absence_quantity, is_delegate) VALUES (?, ?, ?, ?, ?, ?, ?)
+```
+
+31. Merge de la branche sur dev
