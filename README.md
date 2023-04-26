@@ -13,3 +13,5 @@ Ce projet est un exercice de réalisation d'un CRUD en Java pour l'évaluation i
 3. Début de rédaction du fichier README.md pour documenter le projet
 4. Création d'une branche hello-world pour tester le projet
 5. Test basique (Hello, world!) du fonctionnement du projet
+6. Merge de la branche hello-world sur la branche main
+
