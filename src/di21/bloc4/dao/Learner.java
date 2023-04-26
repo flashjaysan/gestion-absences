@@ -30,7 +30,7 @@ public class Learner {
 				+ "\tAdresse email : " + emailAddress + ",\n"
 				+ "\tNuméro de téléphone : " + phoneNumber + ",\n"
 				+ "\tAbscences : " + abscenceQuantity + ",\n"
-				+ "\tDélégué : " + isDelegate + "\n"
+				+ "\tDélégué : " + (isDelegate ? "oui" : "non") + "\n"
 				+ "]";
 	}
 
