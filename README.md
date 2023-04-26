@@ -14,4 +14,5 @@ Ce projet est un exercice de réalisation d'un CRUD en Java pour l'évaluation i
 4. Création d'une branche hello-world pour tester le projet
 5. Test basique (Hello, world!) du fonctionnement du projet
 6. Merge de la branche hello-world sur la branche main
+7. Création d'une branche dev et suppression des fichiers relatifs à hello world
 
