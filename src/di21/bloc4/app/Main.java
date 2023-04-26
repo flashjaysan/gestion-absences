@@ -91,6 +91,7 @@ public class Main {
 	}
         
     private static void insertToDatabase(Learner learner) throws SQLException, ClassNotFoundException {
+    	// création d'un nouvel apprenant en base de données
 		Class.forName(POSTGRESQL_DRIVER_NAME);
         
         try (Connection connection = DriverManager.getConnection(POSTGRESQL_DB_CONNECTION, POSTGRESQL_DB_LOGIN, POSTGRESQL_DB_PASSWORD)) {
@@ -116,16 +117,20 @@ public class Main {
     }
     
     private static void displayAllLearners() throws ClassNotFoundException, SQLException {
+    	// récupération de la liste de tous les apprenants en base de données
     	List<Learner> learners = getAllFromDatabase();
     	
+    	// affichage des informations de tous les apprenants
     	for (Learner learner : learners) {
     		System.out.println(learner);
     	}
     }
     
     private static List<Learner> getAllFromDatabase() throws ClassNotFoundException, SQLException {
+    	// initialisation de la liste à renvoyer
     	List<Learner> learners = new ArrayList<Learner>();
     	
+    	// récupération des informations de tous les apprenants dans la base de données
 		Class.forName(POSTGRESQL_DRIVER_NAME);
         
         try (Connection connection = DriverManager.getConnection(POSTGRESQL_DB_CONNECTION, POSTGRESQL_DB_LOGIN, POSTGRESQL_DB_PASSWORD)) {
@@ -141,6 +146,7 @@ public class Main {
                         int absenceQuantity = resultSet.getInt("absence_quantity");
                         boolean isDelegate = resultSet.getBoolean("is_delegate");
                         
+                        // création d'un apprenant à partir des informations récupérées en base de données
                         Learner learner = new Learner(
                     		id,
                     		group,
@@ -152,6 +158,7 @@ public class Main {
                     		isDelegate
                         );
                         
+                        // ajout de l'apprenant à la liste à renvoyer
                         learners.add(learner);
                     }
                 }
