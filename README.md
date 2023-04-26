@@ -75,3 +75,8 @@ SELECT * FROM learner
 ```
 
 34. Merge de la branche sur dev
+35. Création d'une branche delete-learner pour supprimer un apprenant
+36. Suppression d'un apprenant via son id
+```
+DELETE FROM learner WHERE id = ?
+```
