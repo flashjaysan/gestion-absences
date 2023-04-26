@@ -15,4 +15,9 @@ Ce projet est un exercice de réalisation d'un CRUD en Java pour l'évaluation i
 5. Test basique (Hello, world!) du fonctionnement du projet
 6. Merge de la branche hello-world sur la branche main
 7. Création d'une branche dev et suppression des fichiers relatifs à hello world
-
+8. Création d'une branche learner-class
+9. Création d'un package di21.bloc4.dao
+10. Création de la classe Learner
+11. Création de ses attributs
+12. Création des getters/setters
+13. Création du constructeur
