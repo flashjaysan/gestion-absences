@@ -21,3 +21,7 @@ Ce projet est un exercice de réalisation d'un CRUD en Java pour l'évaluation i
 11. Création de ses attributs
 12. Création des getters/setters
 13. Création du constructeur
+14. Création d'une méthode toString pour afficher les informations d'une instance
+15. Création d'un package di21.bloc4.app
+16.Création d'une classe Main avec le point d'entrée du programme
+17. Création d'un objet Learner et affichage de ses informations pour test

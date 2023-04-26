@@ -21,6 +21,19 @@ public class Learner {
 		this.isDelegate = isDelegate;
 	}
 
+	@Override
+	public String toString() {
+		return "Apprenant : [\n"
+				+ "\tPromotion : " + group + ",\n"
+				+ "\tPrénom : " + firstName + ",\n"
+				+ "\tNom : " + lastName + ",\n"
+				+ "\tAdresse email : " + emailAddress + ",\n"
+				+ "\tNuméro de téléphone : " + phoneNumber + ",\n"
+				+ "\tAbscences : " + abscenceQuantity + ",\n"
+				+ "\tDélégué : " + isDelegate + "\n"
+				+ "]";
+	}
+
 	public String getGroup() {
 		return group;
 	}
