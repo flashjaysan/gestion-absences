@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import di21.bloc4.dao.Learner;
@@ -28,7 +30,7 @@ public class Main {
 		boolean loop = true;
 
 		while (loop) {
-			String action = "modify";
+			String action = "tri par nom";
 
 			switch (action) {
 			case "ajouter":
@@ -45,6 +47,10 @@ public class Main {
 				break;
 			case "modify":
 				modifyAbsenceLearner();
+				loop = false; // quitter la boucle après affichage
+				break;
+			case "tri par nom":
+				displayAllByName();
 				loop = false; // quitter la boucle après affichage
 				break;
 			}
@@ -248,6 +254,21 @@ public class Main {
 				preparedStatement.executeUpdate();
 			}
 		}
+	}
+	
+	public static void displayAllByName() throws ClassNotFoundException, SQLException {
+		System.out.println("AFFICHAGE DE TOUS LES APPRENANTS PAR NOM");
+
+		// récupération de la liste de tous les apprenants en base de données
+		List<Learner> learners = getAllFromDatabase();
+		
+		learners.sort((final Learner learner1, final Learner learner2) -> learner1.getLastName().compareTo(learner2.getLastName()));
+
+		// affichage des informations de tous les apprenants
+		for (Learner learner : learners) {
+			System.out.println(learner);
+		}
+		
 	}
 
 }

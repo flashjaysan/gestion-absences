@@ -90,3 +90,5 @@ UPDATE learner SET absence_quantity = ? WHERE id = ?
 ```
 
 39. Création d'une branche order-by-name
+40. Gestion de l'affichage des apprenants trié par nom
+41. Merge sur la branche dev
