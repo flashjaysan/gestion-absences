@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import di21.bloc4.dao.Learner;
 
@@ -26,12 +28,16 @@ public class Main {
 		boolean loop = true;
 		
 		while(loop) {
-			String action = "ajouter";
+			String action = "visualiser";
 			
 			switch(action) {
 			case "ajouter":
 				addLearner();
 				loop = false; // quitter la boucle après ajout
+				break;
+			case "visualiser":
+				displayAllLearners();
+				loop = false; // quitter la boucle après affichage
 				break;
 			}	
 		}
@@ -44,8 +50,9 @@ public class Main {
 		
 		insertToDatabase(learner);
         
-		System.out.println("Ajout de l'apprenant :");
+		System.out.println("L'apprenant :");
 		System.out.println(learner);
+		System.out.println(" a été ajouté.");
 	}
 	
 	private static Learner getLearnerFromUser() {
@@ -104,10 +111,54 @@ public class Main {
 	                    learner.setId(generatedKeys.getLong(1));
 	                }
 	            }
-          }
+            }
+        }
+    }
+    
+    private static void displayAllLearners() throws ClassNotFoundException, SQLException {
+    	List<Learner> learners = getAllFromDatabase();
+    	
+    	for (Learner learner : learners) {
+    		System.out.println(learner);
+    	}
+    }
+    
+    private static List<Learner> getAllFromDatabase() throws ClassNotFoundException, SQLException {
+    	List<Learner> learners = new ArrayList<Learner>();
+    	
+		Class.forName(POSTGRESQL_DRIVER_NAME);
+        
+        try (Connection connection = DriverManager.getConnection(POSTGRESQL_DB_CONNECTION, POSTGRESQL_DB_LOGIN, POSTGRESQL_DB_PASSWORD)) {
+            try (Statement statement = connection.createStatement()) {
+                try (ResultSet resultSet = statement.executeQuery("SELECT * FROM learner")) {
+                    while (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        String group = resultSet.getString("group_name");
+                        String firstName = resultSet.getString("first_name");
+                        String lastName = resultSet.getString("last_name");
+                        String emailAddress = resultSet.getString("email_address");
+                        String phoneNumber = resultSet.getString("phone_number");
+                        int absenceQuantity = resultSet.getInt("absence_quantity");
+                        boolean isDelegate = resultSet.getBoolean("is_delegate");
+                        
+                        Learner learner = new Learner(
+                    		id,
+                    		group,
+                    		firstName,
+                    		lastName,
+                    		emailAddress,
+                    		phoneNumber,
+                    		absenceQuantity,
+                    		isDelegate
+                        );
+                        
+                        learners.add(learner);
+                    }
+                }
+            }
         }
     	
+        return learners;
     }
-            
 
 }
