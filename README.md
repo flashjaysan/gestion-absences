@@ -88,3 +88,5 @@ DELETE FROM learner WHERE id = ?
 ```
 UPDATE learner SET absence_quantity = ? WHERE id = ?
 ```
+
+39. Création d'une branche order-by-name
