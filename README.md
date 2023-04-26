@@ -26,5 +26,8 @@ Ce projet est un exercice de réalisation d'un CRUD en Java pour l'évaluation i
 16. Création d'une classe Main avec le point d'entrée du programme
 17. Création d'un objet Learner et affichage de ses informations pour test
 18. Merge de la branche learner-class sur la branche dev
-19. Création d'une branche pour corriger l'affichage de l'attribut isDelegate
+19. Découverte d'un bug qui affiche l'attribut isDelegate sous forme de booléen anglais
+20. Création d'une branche fix-learner-tostring-method-delegateattribute pour corriger le bug
+21. Correction du bug
+22. Merge de la branche sur dev
 
