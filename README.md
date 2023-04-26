@@ -54,3 +54,8 @@ CREATE TABLE learner(
 - Sélectionner le JDBC connector postgresql
 - Cliquer sur le bouton Apply and Close
 - Le projet doit désormais contenir une entrée Referenced Libraries avec le JDBC connector postgresql
+
+25. Création d'une branche adding-learner pour gérer l'ajout d'apprenants
+26. Création de la méthode addLearner dans la classe Main
+27. Création d'une boucle d'exécution dans le programme principal
+28. Ajout d'un attribut id à la classe Learner
