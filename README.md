@@ -30,4 +30,27 @@ Ce projet est un exercice de réalisation d'un CRUD en Java pour l'évaluation i
 20. Création d'une branche fix-learner-tostring-method-delegateattribute pour corriger le bug
 21. Correction du bug
 22. Merge de la branche sur dev
+23. Création de la table learner dans postgresql
 
+```
+CREATE TABLE learner(
+    id SERIAL PRIMARY KEY,
+    group_name VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email_address VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(255) NOT NULL,
+    absence_quantity INTEGER,
+    is_delegate BOOLEAN
+)
+```
+
+24. Configuration du projet pour utiliser le JDBC connector de Postgresql
+
+- Faire un clic droit sur le projet dans Eclise
+- Sélectionner la section JavaBuild Path
+- Cliquer sur la zone Classpath
+- Cliquer sur le bouton Add External JARS...
+- Sélectionner le JDBC connector postgresql
+- Cliquer sur le bouton Apply and Close
+- Le projet doit désormais contenir une entrée Referenced Libraries avec le JDBC connector postgresql
