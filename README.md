@@ -70,3 +70,8 @@ INSERT INTO learner(group_name, first_name, last_name, email_address, phone_numb
 32. Création d'une branche display-all-learners pour afficher tous les utilisateurs
 33. Ajout de méthodes pour récupérer les informations en base de données, alimenter une liste d'apprenants et afficher leurs informations
 
+```
+SELECT * FROM learner
+```
+
+34. Merge de la branche sur dev
